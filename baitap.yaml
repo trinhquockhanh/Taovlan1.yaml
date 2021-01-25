@@ -1,6 +1,6 @@
 ---
 - name: baitap
-	hosts: all
+  hosts: all
   gather_facts: no
   
   tasks:
