@@ -1,0 +1,22 @@
+---
+- name: tao vlan
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+  	- name: VLAN 1000VND
+      ios_vlan:
+      		vlan_id: "{{ item.number }}"
+          name: "{{ item.name }}"
+          state: present
+      with_items:
+      	- { number: 50, name: "phong 50" }
+        - { number: 51, name: "phong 51" }
+        - { number: 52, name: "phong 52" }       
+    -   name: show vlan 1000VND
+        ios_command:
+        		command:
+            	- show vlan 1000VND
+        register: show_vlan_1000VND
+        
+    -		debug: var-show_vlan_1000VND.stdout_lines
